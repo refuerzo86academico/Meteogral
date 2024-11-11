@@ -141,3 +141,46 @@ for(i in 1:length(temperatura3)){
 hist(temperatura3,main="Temperatura media",xlab="Temperatura",plot=T)
 
 #Puedo observar que arma mas cantidad de intervalos que los propuestos
+
+#############################################
+
+#a) En base al programa anterior, desarrollar una funcion que reciba una serie
+#de longitud N y entregue como resultado su media, valor maximo, valor mınimo 
+#y desviacion estandar. Evaluar el desempeno de esta funcion con la serie 
+#utilizada en el ejercicio anterior.
+
+rm(list=ls())
+
+#Se arma la función que calcula todos los datos
+
+funcion_resumen <- function(serie) {
+  media<-mean(serie)
+  minimo<-min(serie)
+  maximo<-max(serie)
+  desvio<-sd(serie)
+  return(list(media, minimo, maximo, desvio))
+}
+
+#Se piden los N valores para probar el programa, con la función scan
+
+serie<-scan()
+funcion_resumen(serie)
+
+#Utilizo los datos del ejercicio 7, las temperaturas para probar el programa con
+#mas volumen de datos
+
+funcion_resumen(temperatura)
+
+#b) Armar una funcion a la que se le ingrese una serie de longitud N y una 
+#cantidad de intervalos I,y que calcule un histograma usando I intervalos
+#iguales que abarquen la totalidad del rango de la serie.
+
+funcion_histograma<-function(datos,intervalos){
+  maximo<-max(datos,na.rm=T)
+  minimo<-min(datos,na.rm=T)
+  ancho<-(maximo-minimo)/intervalos
+  grafico<-hist(datos,intervalos,plot = T)
+  return(grafico)
+}
+
+funcion_histograma(temperatura3,6)
